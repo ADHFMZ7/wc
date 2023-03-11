@@ -96,6 +96,11 @@ long word_count(FILE *file) {
 long *char_frequency(FILE *file) {
   fseek(file, 0, SEEK_SET);
   long *counts = (long *)calloc(128, sizeof(long));
+  
+  if (counts == NULL) {
+    fprintf(stderr, "Memory allocation failed. \n");
+    exit(1);
+  }
 
   char c;
   while ((c = getc(file)) != EOF)
